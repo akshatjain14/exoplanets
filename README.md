@@ -1,4 +1,4 @@
-# EXOPLANETS Management System
+# Exoplanets Management System
 
 The Exoplanets Microservice is a Go-based backend service designed to manage information about exoplanets for space voyagers. It allows users to add, list, retrieve, update, and delete exoplanet data, as well as estimate fuel requirements for trips to specific exoplanets.
 
