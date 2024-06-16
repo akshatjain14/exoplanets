@@ -1,4 +1,3 @@
-# EXOPLANETS
 # EXOPLANETS Management System
 
 The Exoplanets Microservice is a Go-based backend service designed to manage information about exoplanets for space voyagers. It allows users to add, list, retrieve, update, and delete exoplanet data, as well as estimate fuel requirements for trips to specific exoplanets.
@@ -11,7 +10,7 @@ The Exoplanets Microservice is a Go-based backend service designed to manage inf
  - Get Exoplanet by ID: Retrieve detailed information about a specific exoplanet using its unique ID.
  - Update Exoplanet: Update the details of an existing exoplanet.
  - Delete Exoplanet: Remove an exoplanet from the catalog.
-     Fuel Estimation: Calculate the estimated fuel cost for a trip to any exoplanet based on its distance, gravity, and crew capacity.
+ - Fuel Estimation: Calculate the estimated fuel cost for a trip to any exoplanet based on its distance, gravity, and crew capacity.
 
 ## Installation
 
