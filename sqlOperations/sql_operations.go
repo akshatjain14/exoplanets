@@ -92,12 +92,20 @@ func UpdateExoplanet(id int, exoplanet models.Exoplanet) error {
 	return nil
 }
 
-func DeleteExoplanet(id int) error {
-	_, err := db.Exec(`DELETE FROM exoplanets WHERE id = ?`, id)
+func DeleteExoplanet(id int) (int64, error) {
+	query := `DELETE FROM exoplanets WHERE id = ?`
+	result, err := db.Exec(query, id)
 	if err != nil {
-		return fmt.Errorf("error deleting exoplanet: %v", err)
+		return 0, fmt.Errorf("error deleting exoplanet: %v", err)
 	}
-	return nil
+
+	// Get the number of rows affected
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return 0, fmt.Errorf("error getting rows affected: %v", err)
+	}
+
+	return rowsAffected, nil
 }
 
 func CalculateFuelEstimation(id int, crewCapacity int) (float64, error) {

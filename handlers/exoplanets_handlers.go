@@ -95,17 +95,28 @@ func UpdateExoplanetHandler(c *gin.Context) {
 
 // DeleteExoplanetHandler handles deleting an exoplanet
 func DeleteExoplanetHandler(c *gin.Context) {
-	id, err := strconv.Atoi(c.Param("id"))
+	// Get the ID from the URL parameters
+	idParam := c.Param("id")
+	id, err := strconv.Atoi(idParam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid exoplanet ID"})
 		return
 	}
 
-	if err := sqlOperations.DeleteExoplanet(id); err != nil {
+	// Delete the exoplanet from the database
+	rowsAffected, err := sqlOperations.DeleteExoplanet(id)
+	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
+	// Check if any row was actually deleted
+	if rowsAffected == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Exoplanet not found"})
+		return
+	}
+
+	// Respond with a success message
 	c.JSON(http.StatusOK, gin.H{"message": "Exoplanet deleted successfully"})
 }
 
